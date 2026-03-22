@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Stability Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <h2>âš¡ Habit Stability Tracker</h2>
+    <a href="http://localhost:3000" target="_blank" class="dashboard-link">Open Dashboard</a>
+  </div>
+
+  <div class="score-card">
+    <p class="label">Today's Stability Score</p>
+    <h1 id="stability-score">--</h1>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box focus">
+      <p class="label">Focus</p>
+      <h3 id="focus-time">--m</h3>
+    </div>
+    <div class="stat-box distraction">
+      <p class="label">Distraction</p>
+      <h3 id="distraction-time">--m</h3>
+    </div>
+  </div>
+
+  <div class="footer">
+    <input id="email-input" type="email" placeholder="Enter login email" />
+    <button id="save-email-btn">Save Email</button>
+    <button id="sync-btn">ðŸ”„ Sync Data</button>
+    <p id="status-msg"></p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
