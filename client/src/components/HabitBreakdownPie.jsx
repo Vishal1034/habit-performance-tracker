@@ -38,8 +38,8 @@ const HabitBreakdownPie = ({ selectedDate, habits = [] }) => {
 
   return (
    <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-     <h4 className="text-slate-900 dark:text-slate-200 font-semibold mb-4">
-        ðŸ’¡ Habit Breakdown {selectedDate ? `for ${selectedDate}` : ''}
+      <h4 className="text-slate-900 dark:text-slate-200 font-semibold mb-4">
+        Habit Breakdown {selectedDate ? `for ${selectedDate}` : ''}
       </h4>
 
       <ResponsiveContainer width="100%" height={300}>
@@ -104,7 +104,7 @@ const HabitBreakdownPie = ({ selectedDate, habits = [] }) => {
                         : 'bg-rose-100 dark:bg-rose-900/50 text-rose-800 dark:text-rose-300'
                     }`}
                   >
-                    {item.type === 'focus' ? 'âœ“ Focus' : 'âœ— Distraction'}
+                    {item.type === 'focus' ? 'Focus' : 'Distraction'}
                   </span>
                 </td>
                 <td className="py-2 px-3 text-right text-slate-700 dark:text-slate-300 font-mono">

@@ -62,7 +62,7 @@ const PeerComparison = () => {
     <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm mt-8">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>ðŸŒ</span> Global Peer Insights
+          Global Peer Insights
         </h3>
         <span className="px-3 py-1 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-full">Anonymized Data</span>
       </div>
@@ -75,11 +75,11 @@ const PeerComparison = () => {
           <div className="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
             {comparisonData.isAboveAverage ? (
               <p className="text-emerald-400 font-medium">
-                ðŸš€ Top Tier! You are {percentDiff}% more active than the average Habit Stability Tracker user today. Keep it up!
+                Top Tier! You are {percentDiff}% more active than the average Habit Stability Tracker user today. Keep it up!
               </p>
             ) : (
               <p className="text-indigo-400 font-medium">
-                ðŸ“Š You are tracking {percentDiff}% below the community average today ({peerMins} mins). Time to focus!
+                You are tracking {percentDiff}% below the community average today ({peerMins} mins). Time to focus!
               </p>
             )}
           </div>

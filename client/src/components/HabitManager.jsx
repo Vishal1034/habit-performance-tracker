@@ -264,14 +264,14 @@ const HabitManager = ({ onLogout }) => {
                       ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
                       : 'bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-200'
                   }`}>
-                    {habit.type === 'focus' ? 'âœ“ Focus' : 'âœ— Distraction'}
+                    {habit.type === 'focus' ? 'Focus' : 'Distraction'}
                   </span>
                 </div>
                 <div className="mb-3">
                   <p className="text-slate-700 dark:text-slate-300 text-sm"><strong>URLs:</strong></p>
                   <ul className="text-slate-600 dark:text-slate-400 text-sm mt-1">
                     {habit.urls.map((url, idx) => (
-                      <li key={idx} className="ml-2">â€¢ {url}</li>
+                      <li key={idx} className="ml-2">- {url}</li>
                     ))}
                   </ul>
                 </div>

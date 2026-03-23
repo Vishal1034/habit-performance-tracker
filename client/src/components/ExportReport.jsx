@@ -49,7 +49,7 @@ const ExportReport = () => {
           disabled={isDownloading}
           className="flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isDownloading ? 'â³ Generating...' : 'ðŸ“„ Download CSV'}
+          {isDownloading ? 'Generating...' : 'Download CSV'}
         </button>
       </div>
     </div>

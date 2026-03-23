@@ -57,7 +57,7 @@ app.use(mongoSanitize());
 app.use(hpp());
 app.use('/api', apiLimiter);
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/Habit Stability Tracker', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/habit_stability_tracker', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

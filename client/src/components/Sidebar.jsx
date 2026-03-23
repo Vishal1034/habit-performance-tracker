@@ -15,26 +15,26 @@ const Sidebar = () => {
   return (
      <div className="h-screen w-64 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 flex flex-col fixed top-0 left-0 border-r border-slate-200 dark:border-slate-700">
       <div className="p-6">
-         <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-wider flex items-center gap-2">
-          <span className="text-indigo-500">âš¡</span> Habit Stability Tracker
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-wider flex items-center gap-2">
+          <span className="text-indigo-500">HS</span> Habit Stability Tracker
         </h1>
       </div>
 
       <nav className="flex-1 px-4 space-y-2 mt-4">
         <NavLink to="/" end className={navClass}>
-          <span>ðŸ“Š</span> Dashboard
+          Dashboard
         </NavLink>
         <NavLink to="/settings" className={navClass}>
-          <span>âš™ï¸</span> Habit Config
+          Habit Config
         </NavLink>
         <NavLink to="/peer-insights" className={navClass}>
-          <span>ðŸ†</span> Peer Insights
+          Peer Insights
         </NavLink>
         <NavLink to="/people" className={navClass}>
-          <span>ðŸ‘¥</span> People
+          People
         </NavLink>
         <NavLink to="/reports" className={navClass}>
-          <span>ðŸ“„</span> Reports
+          Reports
         </NavLink>
       </nav>
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
             onClick={toggleTheme}
              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-lg transition-colors text-sm"
           >
-            {isDark ? 'â˜€ï¸ Light Mode' : 'ðŸŒ™ Dark Mode'}
+            {isDark ? 'Light Mode' : 'Dark Mode'}
           </button>
         
          <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70 p-3">
