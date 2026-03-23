@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       distractionEl.textContent = `${Math.round((analytics.totalDistractionTime || 0) / 60)}m`;
 
       if (analytics.hasAnyTrackedData) {
-        setStatus(`âœ“ Synced (${analytics.totalFocusTime + analytics.totalDistractionTime}s tracked)`);
+        setStatus(`Synced (${analytics.totalFocusTime + analytics.totalDistractionTime}s tracked)`);
       } else {
         setStatus('No activity tracked yet');
       }
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
 
       await fetchAnalytics();
-      setStatus(`âœ“ Email saved: ${nextEmail}`);
+      setStatus(`Email saved: ${nextEmail}`);
 
       console.log('Email saved and habits refreshed');
     } catch (error) {
