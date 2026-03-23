@@ -1,6 +1,6 @@
 # Habit Management System - Implementation Complete
 
-## âœ… What's Been Implemented
+## [DONE] What's Been Implemented
 
 ### Backend (Node.js/Express)
 
@@ -37,13 +37,13 @@
    - Now renders HabitManager component
    - Properly wired to pass `logout` function for API auth handling
 
-## ðŸ”„ Data Flow
+## Data Flow
 
 ### Creating a Habit:
 1. User navigates to **Habit Config** (Settings page)
 2. Clicks **"+ Create New Habit"**
 3. Fills form: name, type (focus/distraction), URLs, daily goal in minutes
-4. Clicks **"Create Habit"** â†’ Frontend converts minutes to seconds
+4. Clicks **"Create Habit"** -> Frontend converts minutes to seconds
 5. **POST /api/habits** sends data to backend
 6. Backend validates and saves to MongoDB with user ID
 7. HabitManager component refreshes and displays created habit
@@ -53,7 +53,7 @@
 2. Analytics engine (`stabilityCalculator.js`) matches logged URLs against habit rules
 3. Dashboard displays habit-by-habit breakdown with completion %, time spent, type
 
-## ðŸ“‹ Habit Schema
+## Habit Schema
 
 ```javascript
 {
@@ -67,7 +67,7 @@
 }
 ```
 
-## ðŸ§ª Test Instructions
+## Test Instructions
 
 ### Prerequisites:
 1. Client running: `npm start` in `client/` folder (port 3000)
@@ -95,7 +95,7 @@
 3. **Test Analytics (Manual):**
    - Return to Dashboard
    - Open browser DevTools (F12)
-   - Console tab â†’ run:
+   - Console tab -> run:
      ```javascript
      fetch('http://localhost:5000/api/logs', {
        method: 'POST',
@@ -121,12 +121,12 @@
    - Click "Download CSV"
    - Verify CSV contains your logged activities
 
-## ðŸ› Troubleshooting
+## Troubleshooting
 
 ### "Failed to fetch habits" error:
 - Check browser DevTools Console for error message
 - Verify JWT token in localStorage:
-  - DevTools â†’ Application â†’ localStorage â†’ token
+   - DevTools -> Application -> localStorage -> token
 - Ensure server is running on port 5000
 
 ### Habit creates but doesn't appear:
@@ -137,9 +137,9 @@
 ### URLs not matching in analytics:
 - Verify URL is exactly as logged (case-sensitive)
 - Remove `http://` or `https://` - just use `domain.com`
-- Check that habit dailyGoal is in seconds (minutes Ã— 60)
+- Check that habit dailyGoal is in seconds (minutes x 60)
 
-## ðŸŽ¯ Next Steps (Optional Enhancements)
+## Next Steps (Optional Enhancements)
 
 1. **Add habit categories** - Organize habits by project/type
 2. **Weekly/Monthly views** - See trends over time
@@ -148,18 +148,18 @@
 5. **Habit streaks** - Track consecutive completion days
 6. **Bulk import/export** - Save/restore habit configurations
 
-## âœ¨ Key Features Enabled
+## Key Features Enabled
 
-âœ… Full CRUD for habits  
-âœ… Habit type classification (focus vs distraction)  
-âœ… Multiple URLs per habit  
-âœ… Customizable daily goals  
-âœ… URL-to-habit matching in analytics  
-âœ… User-specific habit isolation (JWT protection)  
-âœ… Real-time feedback on create/update/delete  
-âœ… Responsive UI design matching existing dashboard  
+[DONE] Full CRUD for habits  
+[DONE] Habit type classification (focus vs distraction)  
+[DONE] Multiple URLs per habit  
+[DONE] Customizable daily goals  
+[DONE] URL-to-habit matching in analytics  
+[DONE] User-specific habit isolation (JWT protection)  
+[DONE] Real-time feedback on create/update/delete  
+[DONE] Responsive UI design matching existing dashboard  
 
 ---
 
-**Status:** You can now create habits and test the full data pipeline! ðŸš€
+**Status:** You can now create habits and test the full data pipeline.
 

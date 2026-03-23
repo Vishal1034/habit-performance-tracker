@@ -1,5 +1,5 @@
 {
-  "name": "Habit Stability Tracker-server",
+  "name": "habit-stability-tracker-server",
   "version": "1.0.0",
   "description": "Backend server for Habit Stability Tracker habit tracking application",
   "main": "src/index.js",

@@ -1,134 +1,97 @@
-# ðŸš€ Chrome Extension Setup Guide
+# Chrome Extension Setup Guide
 
 ## Installation Steps
 
 ### 1. Load Extension into Chrome
 
-**Quick Steps:**
-1. Open `chrome://extensions` in address bar
-2. Enable **Developer mode** (toggle in top-right)
-3. Click **Load unpacked**
-4. Select folder: `c:\...\habit-stability-tracker\extension\`
-5. Done! âš¡ Icon appears in toolbar
+1. Open `chrome://extensions`.
+2. Enable **Developer mode**.
+3. Click **Load unpacked**.
+4. Select the `extension/` folder from this project.
+5. Confirm the extension icon appears in the browser toolbar.
 
-### 2. Configure & Test
+### 2. Start Backend and Frontend
 
-#### Step 1: Prepare Backend & Frontend
-```
 Terminal 1 (Backend):
+```bash
 cd server
 npm run dev
+```
 
 Terminal 2 (Frontend):
-cd client  
+```bash
+cd client
 npm start
 ```
 
-#### Step 2: Login to Web App
-- Open http://localhost:3000
-- Email: `demo@habitstabilitytracker.com`
-- Password: `demo123`
-- Click either **"Login (Real Email)"** or **"Login (Dummy Email)"**
-- Important: Use the same email in extension popup (Step 4), otherwise habits/logs appear under different users
+### 3. Login to the Web App
 
-#### Step 3: Create Test Habits
+1. Open `http://localhost:3000`.
+2. Login with your account.
+3. Use the same email in the extension popup to keep data under one user.
 
-**Habit 1: YouTube Tracking**
-- Name: `YouTube`
-- Type: `Focus`
-- URLs: `youtube.com`
-- Daily Goal: `60` mins
+### 4. Configure Extension Email
 
-**Habit 2: GitHub Coding**
-- Name: `GitHub`
-- Type: `Focus`
-- URLs: `github.com`
-- Daily Goal: `120` mins
+1. Click the extension icon.
+2. Enter your login email.
+3. Click **Save Email**.
+4. Click **Sync Data** once to initialize data flow.
 
-#### Step 4: Setup Extension Email
+### 5. Test Activity Tracking
 
-1. Click âš¡ extension icon in Chrome toolbar
-2. See popup showing:
-   - Stability Score: --
-   - Focus: --m
-   - Distraction: --m
-3. Enter email field: `demo@habitstabilitytracker.com`
-4. Click **Save Email**
-5. Keep this email exactly same as the one used at web login
-6. Click **ðŸ”„ Sync Data** â†’ Should sync with empty data first time
+1. Open a site that matches a habit URL (for example `youtube.com` or `github.com`).
+2. Stay on the tab for at least 30 seconds.
+3. Switch tabs or windows.
+4. Open the extension popup and click **Sync Data**.
+5. Verify the dashboard shows updated tracked time.
 
-#### Step 5: Test Real Activity Tracking
+## How Tracking Works
 
-1. **Open YouTube tab** (or other habit URL)
-2. **Stay for 30+ seconds**
-3. **Switch to another tab** (or different window)
-   - Extension logs activity automatically
-4. **Return to tracker tab**
-5. **Open extension popup**
-6. Click **ðŸ”„ Sync Data**
-7. **Check Dashboard**
-   - Go back to web app
-   - See habit showing tracked time
-   - Stability score updates with real %
+`Browser activity -> Extension detects tab/url change -> Local log buffer -> Sync Data -> Backend logs -> Dashboard analytics`
 
-## ðŸ“Š How Extension Tracking Works
+Auto logging is triggered by:
+- Tab/window switch
+- URL/domain change
+- Periodic flush (about every 15 seconds)
 
-```
-Browser Activity â†’ Extension Detects â†’ Logs Stored Locally â†’ 
-Click Sync â†’ Sends to Backend â†’ Dashboard Updates
-```
+## Common Issues
 
-**Auto-logging triggers:**
-- âœ… Tab/window switch (when you click away)
-- âœ… URL change (same tab, different domain)
--âœ… Every 15 seconds (periodic flush)
+### Extension icon not appearing
+- Refresh `chrome://extensions`.
+- Make sure Developer mode is enabled.
+- Confirm the `extension/manifest.json` path is correct.
 
-## âš ï¸ Common Issues
+### Cannot connect to `localhost:5000`
+- Ensure backend is running: `cd server && npm run dev`.
+- Check if port 5000 is occupied: `netstat -ano | findstr :5000`.
 
-### Extension Icon Not Appearing
-- âœ“ Refresh `chrome://extensions`
-- âœ“ Make sure Developer mode is ON
-- âœ“ Check manifest.json has correct "extension" path
+### Dashboard still shows no data
+- Click **Sync Data** in popup.
+- Confirm popup email matches web app login email.
+- Check backend terminal logs for API errors.
 
-### "Can't connect to localhost:5000"
-- âœ“ Backend must be running (`npm run dev` in server/)
-- âœ“ Check no other process on port 5000: `netstat -ano | findstr :5000`
+### Extension not tracking activity
+- Confirm extension is enabled on `chrome://extensions`.
+- Inspect extension popup/background for errors from extension details page.
+- Verify background service worker is active.
 
-### Dashboard Shows 0% Even After Tracking
-- âœ“ Click **ðŸ”„ Sync Data** in extension popup
-- âœ“ Check email matches in popup field
-- âœ“ Check backend logs for errors: `npm run dev` output
+## Extension File Structure
 
-### Extension Doesn't Track Activity
-- âœ“ Extension must be loaded (visible in `chrome://extensions`)
-- âœ“ No errors in extension? Check: Right-click extension â†’ "Inspect" 
-- âœ“ Background service worker running? Should see in popup
-
-## ðŸ§ª Quick Test Sequence
-
-1. **Login** â†’ demo@habitstabilitytracker.com / demo123
-2. **Create habit** â†’ YouTube / 60min goal
-3. **Extension popup** â†’ Save email: demo@habitstabilitytracker.com
-4. **Open YouTube** â†’ Wait 30s â†’ Switch tabs
-5. **Extension popup** â†’ Click Sync Data
-6. **Dashboard** â†’ See YouTube habit with tracked time % âœ“
-
-## ðŸ“ Extension File Structure
-
-```
+```text
 extension/
-â”œâ”€â”€ manifest.json          â† Chrome extension config
-â”œâ”€â”€ background.js          â† Auto-tracking service worker
-â”œâ”€â”€ popup/
-â”‚   â”œâ”€â”€ popup.html         â† What user sees when click icon
-â”‚   â”œâ”€â”€ popup.js           â† Sync & analytics display
-â”‚   â””â”€â”€ popup.css          â† Popup styling
-â””â”€â”€ icons/                 â† Extension icon images
+|-- manifest.json
+|-- background.js
+|-- popup/
+|   |-- popup.html
+|   |-- popup.js
+|   `-- popup.css
+`-- icons/
 ```
 
-## ðŸ”„ Extension <â†’ Backend Communication
+## Extension and Backend Requests
 
-**Extension Sends:**
+Extension sends activity logs:
+
 ```json
 POST /api/logs
 {
@@ -136,26 +99,15 @@ POST /api/logs
   "duration": 45,
   "email": "demo@habitstabilitytracker.com"
 }
-Header: X-User-Email: demo@habitstabilitytracker.com
 ```
 
-**Dashboard Sends:**
+Dashboard fetches analytics:
+
 ```json
 GET /api/analytics/today
 Header: X-User-Email: demo@habitstabilitytracker.com
 ```
 
-Both use **email-based identity** (no JWT token needed).
+## Status
 
-## ðŸŽ¯ Next Steps After Setup
-
-- âœ… Test on different websites (GitHub, YouTube, etc.)
-- âœ… Create distraction habits (Reddit, Twitter, etc.) to test Type
-- âœ… Leave active for full day to see real analytics
-- âœ… Check Peer Insights to see community comparison
-- âœ… Export CSV report for external analysis
-
----
-
-**Status:** Once extension is loaded and email is configured, you're ready to track! ðŸš€
-
+When the extension is loaded and email is configured, tracking is ready to use.
